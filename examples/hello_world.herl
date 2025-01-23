@@ -1,0 +1,8 @@
+<div id="hello_{world}">
+    {maps:get(hello, Bindings, ~"Hello")}, {
+        case Who of
+            world -> ~"World";
+            _Other -> {name, Who}
+        end
+    }!
+</div>
