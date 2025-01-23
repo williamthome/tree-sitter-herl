@@ -1,0 +1,36 @@
+{
+  "grammars": [
+    {
+      "name": "herl",
+      "camelcase": "HErl",
+      "scope": "source.herl",
+      "file-types": [
+        ".herl"
+      ],
+      "injection-regex": "^herl$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for HErl files",
+    "authors": [
+      {
+        "name": "William Fank Thomé",
+        "email": "williamthome@hotmail.com",
+        "url": "https://github.com/williamthome"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/williamthome/tree-sitter-herl"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
