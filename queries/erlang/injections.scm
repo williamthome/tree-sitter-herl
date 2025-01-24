@@ -2,7 +2,7 @@
   expr: (remote
     module: (remote_module
       module: (atom) @module (#eq? @module "arizona_render"))
-    fun: (atom) @fun (#match? @fun "^view_template|component_template$"))
+    fun: (atom) @fun (#any-of? @fun "view_template" "component_template"))
   args: (expr_args
     args: (var)
     args: (var)
