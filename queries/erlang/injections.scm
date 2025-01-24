@@ -8,7 +8,8 @@
     args: (var)
     args: (string) @injection.content
             (#gsub! @injection.content "\"+(.*)[^\"]" "%1")
-            (#set! injection.language "herl")))
+            (#set! injection.language "herl")
+            (#set! injection.include-children)))
 
 (call
   expr: (remote
@@ -18,4 +19,5 @@
   args: (expr_args
     args: (string) @injection.content
             (#gsub! @injection.content "\"+(.*)[^\"]" "%1")
-            (#set! injection.language "herl")))
+            (#set! injection.language "herl")
+            (#set! injection.include-children)))
