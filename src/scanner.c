@@ -14,7 +14,8 @@ static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
 static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
 static inline void skip_string(TSLexer *lexer) {
-  while (lexer->lookahead != '\\' && lexer->lookahead != '"') {
+  while (lexer->lookahead && lexer->lookahead != '\\' &&
+         lexer->lookahead != '"') {
     if (lexer->lookahead == '\\') {
       advance(lexer);
       if (lexer->lookahead == '"') {
@@ -30,7 +31,8 @@ static inline void skip_string(TSLexer *lexer) {
 }
 
 static inline void skip_atom(TSLexer *lexer) {
-  while (lexer->lookahead != '\\' && lexer->lookahead != '\'') {
+  while (lexer->lookahead && lexer->lookahead != '\\' &&
+         lexer->lookahead != '\'') {
     if (lexer->lookahead == '\\') {
       advance(lexer);
       if (lexer->lookahead == '\'') {
@@ -59,8 +61,9 @@ static void deserialize(Scanner *scanner, const char *buffer, unsigned length) {
 
 static bool scan_expression(Scanner *scanner, TSLexer *lexer) {
   // Scan until we find the closing curly brace or another significant character
-  while (lexer->lookahead != '{' && lexer->lookahead != '}' &&
-         lexer->lookahead != '"' && lexer->lookahead != '\'') {
+  while (lexer->lookahead && lexer->lookahead != '{' &&
+         lexer->lookahead != '}' && lexer->lookahead != '"' &&
+         lexer->lookahead != '\'') {
     advance(lexer);
   }
 

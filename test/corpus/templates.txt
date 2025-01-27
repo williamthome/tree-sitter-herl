@@ -18,3 +18,33 @@ Hello, World!
   (expression) (text)
   (expression)
   (text))
+
+===================
+Skip invalid string
+===================
+
+{"invalid}
+
+---
+
+(tokens
+  (text)
+  (ERROR
+    (UNEXPECTED '"'))
+  (expression)
+  (text))
+
+=================
+Skip invalid atom
+=================
+
+{'invalid}
+
+---
+
+(tokens
+  (text)
+  (ERROR
+    (UNEXPECTED '''))
+  (expression)
+  (text))
