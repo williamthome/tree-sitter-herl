@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Read Node.js version from .tool-versions
+        id: node-version
+        run: |
+          NODE_VERSION=$(grep 'nodejs' .tool-versions | awk '{print $2}')
+          echo "Node.js version: $NODE_VERSION"
+          echo "NODE_VERSION=$NODE_VERSION" >> $GITHUB_ENV
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm install -g tree-sitter-cli
+          npm install
+
+      - name: Generate parser
+        run: tree-sitter generate
+
+      - name: Run tests
+        run: tree-sitter test
