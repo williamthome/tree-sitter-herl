@@ -7,6 +7,13 @@
       "file-types": [
         ".herl"
       ],
+      "highlights": [
+        "queries/herl/highlights.scm"
+      ],
+      "injections": [
+        "queries/erlang/injections.scm",
+        "queries/herl/injections.scm"
+      ],
       "injection-regex": "^herl$"
     }
   ],

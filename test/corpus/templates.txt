@@ -1,0 +1,50 @@
+=============
+Hello, World!
+=============
+
+<div id="hello_{world}">
+    {maps:get(hello, Bindings, ~"Hello"}, {
+        case Who of
+            world -> ~"World";
+            _Other -> {name, Who}
+        end
+    }!
+</div>
+
+---
+
+(tokens
+  (text) (expression) (text)
+  (expression) (text)
+  (expression)
+  (text))
+
+===================
+Skip invalid string
+===================
+
+{"invalid}
+
+---
+
+(tokens
+  (text)
+  (ERROR
+    (UNEXPECTED '"'))
+  (expression)
+  (text))
+
+=================
+Skip invalid atom
+=================
+
+{'invalid}
+
+---
+
+(tokens
+  (text)
+  (ERROR
+    (UNEXPECTED '''))
+  (expression)
+  (text))

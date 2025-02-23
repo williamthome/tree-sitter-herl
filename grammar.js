@@ -10,8 +10,20 @@
 module.exports = grammar({
   name: "herl",
 
+  externals: $ => [$.expression],
+
   rules: {
-    // TODO: add the actual grammar rules
-    source_file: $ => "hello"
-  }
+    tokens: $ => repeat(choice(
+      $._expression,
+      $.text,
+    )),
+
+    _expression: $ => seq(
+      '{',
+      $.expression,
+      '}'
+    ),
+
+    text: _$ => /[^{]+/,
+  },
 });
